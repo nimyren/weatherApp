@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+	<meta charset="utf-8">
+
+	<title>Pogoda</title>
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+  <h5 class="my-0 mr-md-auto font-weight-normal">Pogoda</h5>
+  <nav class="my-2 my-md-0 mr-md-3">
+    <a class="p-2 text-dark" href="#">Główna</a>
+    <a class="p-2 text-dark" href="#">Informacja</a>
+  </nav>
+  <a class="btn btn-outline-primary" href="#">Dokumentacja</a>
+</div>
+<div class="container mt-5">
+	<div class="row">	
+		<div class="col-5 offset-1">
+			<form action="" method="post">
+				{%	csrf_token	%}
+				<label for="city">Miasto</label>
+				{{	form.name	}}
+				<input type="submit" name="send" value="Dowiedż" class="mt-2 btn btn-danger">
+			</form>
+		</div>	
+		<div class="col-4 offset-1">
+			<h1>Informacja</h1>
+
+			{%  for info in all_info  %}
+
+			<div class="alert alert-info">
+				<b>Miasto:</b> {{info.city}} <br>
+				<b>Temperatura:</b> {{info.temp}}<sup>o</sup><br>
+				<img src="http://openweathermap.org/img/w/{{info.icon}}.png" class="img-thumbnail" alt="icon">
+			</div>
+
+			{%endfor%}
+		</div>	
+
+
+	</div>	
+
+</div>
+	
+
+</body>
+</html>
